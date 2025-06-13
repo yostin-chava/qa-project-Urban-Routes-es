@@ -86,6 +86,8 @@ class UrbanRoutesPage:
     def __init__(self, driver):
         self.driver = driver
 
+    ####################################################################################################################
+    ####################################################################################################################
     # Metodo para rellenar el campo desde
     def set_from(self, from_address):
         from_a = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(self.from_field))
@@ -110,11 +112,9 @@ class UrbanRoutesPage:
     def set_route(self, from_address, to_address):
         self.set_from(from_address) # Ingresamos la direccion desde pasandele el parametro de la direccion
         self.set_to(to_address) # Ingresamos la direccion hasta pasandele el parametro de la direccion
-        assert self.get_from() == from_address # Confirmacion que se ingreso los datos correctamente
-        assert self.get_to() == to_address # Confirmacion que se ingreso los datos correctamente
-    ######################################################
-    ######################################################
 
+    ######################################################
+    ######################################################
     # Metodo para dar clic en personal
     def button_personal_click(self):
         personal_clic = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(self.set_personal))
@@ -139,7 +139,7 @@ class UrbanRoutesPage:
     def get_el_comfort(self):
         return WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(self.get_element_comfort)).text
 
-    ##############################################
+    #############################################
     # Metodo para seleccionar la tarifa confort #
     #############################################
     def select_tariff_comfort(self):
@@ -147,12 +147,11 @@ class UrbanRoutesPage:
         self.button_taxi_click() #Hace click en taxi
         self.button_order_taxi_click() #Hace click en pedir un taxi
         self.button_comfort_click() #Hace click en la tarifa comfort
-        # Verificamos que estemos entrando a la tarifa confort buscando el elemento que este
-        # en requisitos del pedido "Manta y pañuelos" perteneciente unicamente a la tarifa confort
-        assert "Manta y pañuelos" in self.get_el_comfort()
     #############################################
     #############################################
 
+    ####################################################################################################################
+    ####################################################################################################################
     # Metodo para hacer click en numero de telefono
     def button_phone_click(self):
         button_number = WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable(self.set_phone_number))
@@ -204,21 +203,12 @@ class UrbanRoutesPage:
     ##############################################
     # Metodo para agregar el numero de telefono #
     ##############################################
-    def set_write_phone_number(self, phone_number,driver):
+    def set_write_phone_number(self, phone_number):
         self.button_phone_click() #Hace click en numero de telefono
         self.write_phone_number(phone_number) #Ingresa el numero de telefono
-        assert self.get_phone_number() == phone_number #Verifica que se ingreso el numero de telefono correctamente
-        self.button_next_click() #Hace click en el boton siguiente
-        code = retrieve_phone_code(driver) #Interceptamos el codigo de confirmacion que devuelve el servidor
-        self.set_code_number(code) #Ingresa el codigo de confirmacion
-        assert self.get_code_number() == code #Verifica que se ingreso el codigo de confirmacion correctamente
-        self.button_continue_click() #Hace click en el boton continuar
-        assert "filled" in self.check_class_filled()  # Verifica que efectivamente la clase filled esta en el elemento
-        assert self.get_border_color_add_phone_number() in ["rgb(86, 184, 159)", "rgba(86, 184, 159, 1)"]  # Verifica el color del borde "verde"
-        assert phone_number in self.get_add_phone_number()  # Verifica que el numero de telefono agregado aparezca bien escrito en el formulario
-    ###############################################
-    ###############################################
 
+    ####################################################################################################################
+    ####################################################################################################################
     # Metodo para hacer click en metodo de pago
     def button_payment_method_click(self):
         btn_payment = WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable(self.button_payment))
@@ -269,23 +259,17 @@ class UrbanRoutesPage:
         btn_x = WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable(self.button_close_card))
         btn_x.click()
 
-    ##################################
-    # Metodo para agregar la tarjeta #
-    ##################################
-    def select_and_add_card (self, card_number, card_code):
+    ########################################################
+    # Metodo de pasos para agregar los datos de la tarjeta #
+    ########################################################
+    def set_data_card (self, card_number, card_code):
         self.button_payment_method_click() #Hace click en metodo de pago
         self.button_text_add_card_click() #Hace click en agregar tarjeta
         self.set_number_card(card_number) #Ingresa el numero de la tarjeta
         self.set_code_card(card_code) #Ingresa el codigo de la tarjeta
-        assert self.get_number_card() == card_number #Verifica que se ingreso el numero de la tarjeta correctamente
-        assert self.get_code_card() == card_code #Verifica que se ingreso el codigo de la tarjeta correctamente
-        self.out_click() #Hace click en alguna parte de la pantalla
-        assert self.enabled_button_add() == True #Verifica que el boton esta activado, si es true esta activado
-        self.button_add_card_click() #Hace click en el boton agregar
-        self.button_close_card_click() #Hace click en la X
-    ##################################
-    ##################################
 
+    ####################################################################################################################
+    ####################################################################################################################
     # Metodo que agrega el mensaje al conductor
     def set_msg_driver(self, msg):
         driver_msg = WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable(self.msg_driver))
@@ -310,18 +294,8 @@ class UrbanRoutesPage:
         error_msg = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(self.get_msg_error))
         return error_msg.text
 
-    ####################################################
-    # Metodo para agregar el mensaje para el conductor #
-    ####################################################
-    def add_msg_driver(self, msg):
-        self.set_msg_driver(msg) #Ingresa el msg para el conductor
-        assert self.get_msg_driver() == msg # Verifica que el msj se agrego correctamente
-        assert "error" in self.check_class_error() #Verificaque efectivamente la clase error esta en el elemento
-        assert self.get_border_color_class_error() in ["rgb(252, 82, 48)", "rgba(252, 82, 48, 1)"] #Verifica el color del borde
-        assert "Longitud máxima 24" in self.get_error_msg() # Verifica que el msj de error sea el correcto
-    ####################################################
-    ####################################################
-
+    ####################################################################################################################
+    ####################################################################################################################
     # Metodo para hacer click en la casilla de verificacion
     def check_blanket_scarves_click(self):
         check_click = WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable(self.check_blanket_scarves))
@@ -332,16 +306,8 @@ class UrbanRoutesPage:
         checkbox = self.driver.find_element(*self.see_verify_check_blanket_scarves)
         return checkbox.is_selected()
 
-    #########################################################################
-    # Metodo para seleccionar casilla de verificacion para Manta y pañuelos #
-    #########################################################################
-    def check_box_blanket_scarves(self):
-        self.check_blanket_scarves_click() #Hace click en la casilla de verificacion
-        time.sleep(2)
-        assert self.select_check_box() == True #Verifica que la casilla este seleccionada, si es true esta seleccionada
-    #########################################################################
-    #########################################################################
-
+    ####################################################################################################################
+    ####################################################################################################################
     # Metodo para hacer click en + para agregar un helado
     def order_an_ice_creams_plus_click(self):
         ice_cream_order = WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable(self.order_ice_cream))
@@ -351,16 +317,15 @@ class UrbanRoutesPage:
     def get_quantity_ice_cream(self):
         return self.driver.find_element(*self.see_quantity_ice_cream).text
 
-    #################################
-    # Metodo para pedir dos helados #
-    #################################
+    ##########################################
+    # Metodo de pasos para pedir dos helados #
+    ##########################################
     def order_two_ice_creams(self):
         self.order_an_ice_creams_plus_click() #Hace click en el boton + para agregar un helado
         self.order_an_ice_creams_plus_click() #Hace click en el boton + para agregar un segundo helado
-        assert self.get_quantity_ice_cream() == "2" #Verifica que la cantidad de helados sea dos
-    #################################
-    #################################
 
+    ####################################################################################################################
+    ####################################################################################################################
     # Metodo para hacer click en el boton azul de pedir el taxi
     def button_blue_order_taxi_click(self):
         btn_blue = WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable(self.button_blue_order_taxi))
@@ -371,15 +336,8 @@ class UrbanRoutesPage:
         modal = WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable(self.modal_popup))
         return modal.text
 
-    ####################################################################
-    # Metodo para dar click en el boton pedir taxi y verifica el modal #
-    ####################################################################
-    def check_modal_look_for_taxi(self):
-        self.button_blue_order_taxi_click()
-        assert self.get_modal_popup_looking_taxi() == "Buscar automóvil"
-    ####################################################################
-    ####################################################################
-
+    ####################################################################################################################
+    ####################################################################################################################
     # Metodo que obtiene el texto El conductor llegará en
     def get_text_modal_popup_driver(self):
         popup_driver = WebDriverWait(self.driver, 40).until(EC.visibility_of_element_located(self.modal_popup_driver))
@@ -405,14 +363,6 @@ class UrbanRoutesPage:
         driver_name = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(self.name_driver))
         return driver_name.text
 
-    # Metodo que verifica la informacion del conductor
-    def check_modal_info_driver(self):
-        assert "El conductor llegará en" in self.get_text_modal_popup_driver() # Verifica el texto del conductor llegara en...
-        assert self.get_text_number_order() != "" # Verifica que haya un numero de orden
-        assert self.get_text_rating_driver() != "" # Verifica que haya un rating del conductor
-        assert any(ext in self.get_format_photo_driver() for ext in [".png", ".jpg", ".jpeg", ".svg"]) # Verifica que haya una imagen con algun formato
-        assert self.get_text_name_driver() != "" # Verifica que haya un nombre de conductor
-
 ########################
 ########################
 # Clase para los tests #
@@ -431,74 +381,75 @@ class TestUrbanRoutes:
         cls.driver = webdriver.Chrome(options=options) #cls.driver = webdriver.Chrome(desired_capabilities=capabilities)
 
     def setup_method(self):
-        self.driver.get(data.urban_routes_url)
         self.urban = UrbanRoutesPage(self.driver)
-
-    def teardown_method(self):
-        self.driver.delete_all_cookies()
-        self.driver.refresh()
 
     # Test punto 1
     def test_set_route(self):
+        self.driver.get(data.urban_routes_url)
         self.urban.set_route(data.address_from, data.address_to) # Se prueba las direcciones desde y hasta
+        assert self.urban.get_from() == data.address_from  # Confirmacion que se ingreso los datos correctamente
+        assert self.urban.get_to() == data.address_to  # Confirmacion que se ingreso los datos correctamente
 
     # Test punto 2
     def test_set_tariff_comfort(self):
-        self.urban.set_route(data.address_from, data.address_to) # Es necesario para la prueba
         self.urban.select_tariff_comfort() # Se prueba seleccionar la tarifa confort
+        # Verificamos que estemos entrando a la tarifa confort buscando el elemento que este
+        # en requisitos del pedido "Manta y pañuelos" perteneciente unicamente a la tarifa confort
+        assert "Manta y pañuelos" in self.urban.get_el_comfort()
 
     # Test punto 3
     def test_add_phone_number(self):
-        self.urban.set_route(data.address_from, data.address_to) # Es necesario para la prueba
-        self.urban.select_tariff_comfort() # Es necesario para la prueba
-        self.urban.set_write_phone_number(data.phone_number, self.driver) # Se prueba que se ingrese el numero de telefono
+        self.urban.set_write_phone_number(data.phone_number) # Se prueba que se ingrese el numero de telefono
+        assert self.urban.get_phone_number() == data.phone_number  # Verifica que se ingreso el numero de telefono correctamente
+        self.urban.button_next_click()  # Hace click en el boton siguiente
+        code = retrieve_phone_code(self.driver)  # Interceptamos el codigo de confirmacion que devuelve el servidor
+        self.urban.set_code_number(code)  # Ingresa el codigo de confirmacion
+        assert self.urban.get_code_number() == code  # Verifica que se ingreso el codigo de confirmacion correctamente
+        self.urban.button_continue_click()  # Hace click en el boton continuar
+        assert "filled" in self.urban.check_class_filled()  # Verifica que efectivamente la clase filled esta en el elemento
+        assert self.urban.get_border_color_add_phone_number() in ["rgb(86, 184, 159)","rgba(86, 184, 159, 1)"]  # Verifica el color del borde "verde"
+        assert data.phone_number in self.urban.get_add_phone_number()  # Verifica que el numero de telefono agregado aparezca bien escrito en el formulario
 
     # Test punto 4
     def test_add_card(self):
-        self.urban.set_route(data.address_from, data.address_to) # Es necesario para la prueba
-        self.urban.select_tariff_comfort() # Es necesario para la prueba
-        #self.urban.set_write_phone_number(data.phone_number, self.driver) # No necesario para la prueba
-        self.urban.select_and_add_card(data.card_number, data.card_code) # Se prueba que se ingrese la tarjeta de credito
+        self.urban.set_data_card(data.card_number, data.card_code) # Se prueba que se ingrese la tarjeta de credito
+        assert self.urban.get_number_card() == data.card_number  # Verifica que se ingreso el numero de la tarjeta correctamente
+        assert self.urban.get_code_card() == data.card_code  # Verifica que se ingreso el codigo de la tarjeta correctamente
+        self.urban.out_click()  # Hace click en alguna parte de la pantalla
+        assert self.urban.enabled_button_add() == True  # Verifica que el boton esta activado, si es true esta activado
+        self.urban.button_add_card_click()  # Hace click en el boton agregar
+        self.urban.button_close_card_click()  # Hace click en la X
 
     # Test punto 5
     def test_write_msg_driver(self):
-        self.urban.set_route(data.address_from, data.address_to) # Es necesario para la prueba
-        self.urban.select_tariff_comfort() # Es necesario para la prueba
-        #self.urban.set_write_phone_number(data.phone_number, self.driver) # No necesario para la prueba
-        #self.urban.select_and_add_card(data.card_number, data.card_code) # No necesario para la prueba
-        self.urban.add_msg_driver(data.message_for_driver) # Se prueba que en envie el msj al conductor
+        self.urban.set_msg_driver(data.message_for_driver)  # Ingresa el msg para el conductor
+        assert self.urban.get_msg_driver() == data.message_for_driver  # Verifica que el msj se agrego correctamente
+        assert "error" in self.urban.check_class_error()  # Verificaque efectivamente la clase error esta en el elemento
+        assert self.urban.get_border_color_class_error() in ["rgb(252, 82, 48)", "rgba(252, 82, 48, 1)"]  # Verifica el color del borde
+        assert "Longitud máxima 24" in self.urban.get_error_msg()  # Verifica que el msj de error sea el correcto
 
     # Test punto 6
     def test_check_box_blanket_scarves(self):
-        self.urban.set_route(data.address_from, data.address_to) # Es necesario para la prueba
-        self.urban.select_tariff_comfort() # Es necesario para la prueba
-        #self.urban.set_write_phone_number(data.phone_number, self.driver) # No necesario para la prueba
-        #self.urban.select_and_add_card(data.card_number, data.card_code) # No necesario para la prueba
-        #self.urban.add_msg_driver(data.message_for_driver) # No necesario para la prueba
-        self.urban.check_box_blanket_scarves() # Se prueba que se de check en la casilla de verificacion para seleccionar manta y pañuelos
+        self.urban.check_blanket_scarves_click()  # Hace click en la casilla de verificacion
+        assert self.urban.select_check_box() == True  # Verifica que la casilla este seleccionada, si es true esta seleccionada
 
     # Test punto 7
     def test_order_two_ice_cream(self):
-        self.urban.set_route(data.address_from, data.address_to) # Es necesario para la prueba
-        self.urban.select_tariff_comfort() # Es necesario para la prueba
-        #self.urban.set_write_phone_number(data.phone_number, self.driver) # No necesario para la prueba
-        #self.urban.select_and_add_card(data.card_number, data.card_code) # No necesario para la prueba
-        #self.urban.add_msg_driver(data.message_for_driver) # No necesario para la prueba
-        #self.urban.check_box_blanket_scarves() # No necesario para la prueba
         self.urban.order_two_ice_creams() # Se prueba que se agreguen dos helados
+        assert self.urban.get_quantity_ice_cream() == "2"  # Verifica que la cantidad de helados sea dos
 
-    # Test punto 8 y 9
+    # Test punto 8
+    def test_check_modal_wait_to_driver(self):
+        self.urban.button_blue_order_taxi_click()
+        assert self.urban.get_modal_popup_looking_taxi() == "Buscar automóvil"
+
+    # Test punto 9
     def test_check_modal_info_driver(self):
-        self.urban.set_route(data.address_from, data.address_to) # Es necesario para la prueba
-        self.urban.select_tariff_comfort() # Es necesario para la prueba
-        self.urban.set_write_phone_number(data.phone_number, self.driver) # Es necesario para la prueba
-        self.urban.select_and_add_card(data.card_number, data.card_code) # Es necesario para la prueba
-        self.urban.add_msg_driver(data.message_for_driver) # Es necesario para la prueba
-        #self.urban.check_box_blanket_scarves() # No necesario para la prueba
-        #self.urban.order_two_ice_creams() # No necesario para la prueba
-        self.urban.check_modal_look_for_taxi() # Ventana modal de buscando conductor
-        self.urban.check_modal_info_driver() # Ventana modal de la informacion del conductor
-
+        assert "El conductor llegará en" in self.urban.get_text_modal_popup_driver()  # Verifica el texto del conductor llegara en...
+        assert self.urban.get_text_number_order() != ""  # Verifica que haya un numero de orden
+        assert self.urban.get_text_rating_driver() != ""  # Verifica que haya un rating del conductor
+        assert any(ext in self.urban.get_format_photo_driver() for ext in[".png", ".jpg", ".jpeg", ".svg"])  # Verifica que haya una imagen con algun formato
+        assert self.urban.get_text_name_driver() != ""  # Verifica que haya un nombre de conductor
 
     @classmethod
     def teardown_class(cls):
