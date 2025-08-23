@@ -33,7 +33,7 @@ El test automatizado cubre el ingreso de direcciones, selección de tarifa, núm
 ## 🧰 Técnicas aplicadas
 
 - Se aplicó el patrón **Page Object Model (POM)** para estructurar el código.
-- La clase `UrbanRoutesPage` contiene los localizadores y elementos de la página.
+- La clase `UrbanRoutesPage` contiene los localizadores, elementos y métodos de la página.
 - La clase `TestUrbanRoutes` agrupa las pruebas automatizadas.
 
 ### 🔍 Localizadores utilizados
