@@ -61,3 +61,27 @@ El test automatizado cubre el ingreso de direcciones, selección de tarifa, núm
 
    ```bash
    git clone https://github.com/tu_usuario/urban-grocers.git
+
+2. Crear un entorno virtual (opcional, pero recomendado):
+
+   ```bash
+   python -m venv venv
+
+3. Activar el entorno virtual:
+   
+   ```bash
+   # En Windows:
+   venv\Scripts\activate
+
+   # En macOS/Linux:
+   source venv/bin/activate
+
+5. Instalar las dependencias necesarias:
+
+   ```bash
+   pip install selenium pytest
+
+6. Ejecutar las pruebas:
+
+   ```bash
+   pytest main.py
