@@ -1,46 +1,63 @@
-# Proyecto Urban Routes
+# Proyecto Urban Routes - Automatización
 
-Proyecto realizado por: Yostin Chavarria Castro
+**Autor**: Yostin Chavarría Castro
 
-Grupo: 29
+## 📝 Descripción del proyecto
 
-Descripcion del proyecto:
+Este proyecto consiste en la automatización de pruebas para la aplicación web **Urban Routes**, específicamente para el proceso de solicitud de un taxi.
 
-    El proyecto abarca un test que se realizo a la aplicacion de Urban routes, el cual se automatizo para que se ingresaran direcciones para pedir un taxi, ademas se ingresaba la tarifa, numero de telefono, tarjeta de credito y algunos requisitos del pedido adicionales, adicionalmente se agrego la informacion del conductor a la hora de pedir el taxi y se aceptara el viaje.
+El test automatizado cubre el ingreso de direcciones, selección de tarifa, número de teléfono, datos de tarjeta de crédito y otros requisitos adicionales del pedido. También se automatiza la visualización de la información del conductor una vez aceptado el viaje.
 
-    La prueba 1 configura la direccion.
-    La prueba 2 selecciona la tarifa.
-    La prueba 3 Rellena el numero de telefono.
-    La prueba 4 Agrega la tarjeta de credito.
-    La prueba 5 Escribe un mensaje al conductor.
-    La prueba 6 Pide una manta y pañuelos.
-    La prueba 7 Pide dos helados.
-    La prueba 8 Verifica el modal de busqueda de conductor y cuando se acepta el viaje que es cuando termina el contador verifica la informacion del conductor.
+### 🧪 Pruebas incluidas
 
-Descripcion de las tecnologia
+1. Configura la dirección de origen y destino.
+2. Selecciona la tarifa del viaje.
+3. Rellena el número de teléfono del usuario.
+4. Ingresa los datos de la tarjeta de crédito.
+5. Escribe un mensaje para el conductor.
+6. Solicita una manta y pañuelos.
+7. Pide dos helados.
+8. Verifica el modal de búsqueda de conductor y, al aceptar el viaje, comprueba la información del conductor mostrada al finalizar el contador.
 
-    Se utilizo la libreria selenium junto con el driver webdriver, el script automatizado se realizo en python y las pruebas se corrieron en pytest
+---
 
-Tecnicas utilizadas
+## ⚙️ Tecnologías utilizadas
 
-    Se utilizo el modelo de objetos de pagina o page object model (POM) para organizar las pruebas, se creo la clase UrbanRoutesPage que contiene los objetos o localizadores de la pagina web y la clase TestUrbanRoutes la cual contiene todas las pruebas que se realizaron.
+- **Lenguaje**: Python 3.8 o superior
+- **Framework de pruebas**: Pytest
+- **Librería de automatización**: Selenium
+- **WebDriver**: ChromeDriver 
 
-    Para localizar los objetos se utilizaron localizadores XPATH y CSS selector, ademas se utilizaron funciones como busqueda de localizadores por ID y CLASS_NAME que la libreria selenium posee. 
+---
 
-Requisitos 
+## 🧰 Técnicas aplicadas
 
-    Python version 3.8 o superior
-    Entorno virtual
-    Pytest
-    Libreria Selenium
-    Driver WebDriver
+- Se aplicó el patrón **Page Object Model (POM)** para estructurar el código.
+- La clase `UrbanRoutesPage` contiene los localizadores y elementos de la página.
+- La clase `TestUrbanRoutes` agrupa las pruebas automatizadas.
 
-Pasos para ejecutar las pruebas:
+### 🔍 Localizadores utilizados
 
-    Para ejecutar las pruebas se necesita correr el archivo main.py. Adicionalmente se necesita agregar un entorno virtual de python, instalar la libreria selenium e instalar el driver WebDriver.
+- XPATH
+- CSS Selector
+- ID
+- CLASS_NAME
 
-    1. Clonar el repositorio utilizando el comando git clone https://github.com/tu_usuario/urban-grocers.git en la terminal
-    2. Crear el entorno virtual utilizando el comando python -m venv venv en la terminal
-    2. Instalar la libreria selenium utilizando el comando pip install selenium en la terminal.
-    3. Instalar la libreria pytest utilizando el comando pip install pytest.
-    4. Para ejecutar las pruebas se utiliza el comando pytest main.py en la terminal.
+---
+
+## 📦 Requisitos del entorno
+
+- Python 3.8 o superior
+- Entorno virtual de Python (opcional, pero recomendado)
+- Pytest
+- Selenium
+- WebDriver correspondiente (ej. ChromeDriver)
+
+---
+
+## ▶️ Pasos para ejecutar las pruebas
+
+1. Clonar el repositorio:
+
+   ```bash
+   git clone https://github.com/tu_usuario/urban-grocers.git
