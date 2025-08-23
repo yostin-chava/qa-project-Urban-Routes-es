@@ -36,6 +36,13 @@ El test automatizado cubre el ingreso de direcciones, selección de tarifa, núm
 - La clase `UrbanRoutesPage` contiene los localizadores, elementos y métodos de la página.
 - La clase `TestUrbanRoutes` agrupa las pruebas automatizadas.
 
+### Descripción de archivos principales
+
+- `data.py`: Contiene los datos y parámetros necesarios para las pruebas.
+- `helpers.py`: Incluye funciones para interceptar un código que se envía por mensaje de texto.
+- `main.py`: Contiene las pruebas con sus respectivas aserciones (`assert`).
+- `pages.py`: Define los localizadores y métodos asociados a cada elemento de la página.
+
 ### 🔍 Localizadores utilizados
 
 - XPATH
