@@ -69,7 +69,7 @@ El test automatizado cubre el ingreso de direcciones, selección de tarifa, núm
    ```bash
    git clone https://github.com/tu_usuario/urban-grocers.git
 
-2. Crear un entorno virtual (opcional, pero recomendado):
+2. Crear un entorno virtual:
 
    ```bash
    python -m venv venv
