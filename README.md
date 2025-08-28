@@ -2,6 +2,12 @@
 
 **Autor**: Yostin Chavarría Castro
 
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
+![Selenium](https://img.shields.io/badge/Selenium-WebDriver-green)
+![Pytest](https://img.shields.io/badge/Pytest-Framework-orange)
+![POM](https://img.shields.io/badge/Pattern-Page%20Object%20Model-lightgrey)
+![Locators](https://img.shields.io/badge/Strategy-Locators-yellow)
+
 ## 📝 Descripción del proyecto
 
 Este proyecto consiste en la automatización de pruebas para la aplicación web **Urban Routes**, específicamente para el proceso de solicitud de un taxi.
